@@ -2,10 +2,13 @@ package com.example.azuretranslation;
 
 import java.util.Map;
 
-public class Translation {
+public class LanguagesResponse {
     Map<String, Language> translation;
 
+    @Override
     public String toString() {
+
+        // перечень языков объединяем в одну строку
         String  languages = "";
         for (String l: translation.keySet()) {
             languages += l + ":";
@@ -13,7 +16,8 @@ public class Translation {
         return languages;
     }
 }
-/*
+
+/* формат ответа от API
 {"translation":
   {
    "af":{"name":"Африкаанс","nativeName":"Afrikaans","dir":"ltr"},

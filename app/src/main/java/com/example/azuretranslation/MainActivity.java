@@ -27,26 +27,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Call<Translation> call = api.getLanguages(); // создаём объект-вызов
+        Call<LanguagesResponse> call = api.getLanguages(); // создаём объект-вызов
         call.enqueue(new LanguagesCallback());
 
     }
 
-    class LanguagesCallback implements Callback<Translation> {
+    // TODO: создать аналогичным образом класс для ответа сервера при переводе текста
+    class LanguagesCallback implements Callback<LanguagesResponse> {
 
         @Override
-        public void onResponse(Call<Translation> call, Response<Translation> response) {
+        public void onResponse(Call<LanguagesResponse> call, Response<LanguagesResponse> response) {
             if (response.isSuccessful()) {
-                // TODO: response.body() содержит строку-токен, сохраните его для дальнейшего использования
+                // TODO: response.body() содержит массив языков, доступных для перевода
                 Log.d("mytag", "response: " + response.body());
-            } else
-                Log.d("mytag", "error " + response.code());
+            } else {
+                // TODO: выводить Toast и сообщение в журнал в случае ошибки
+            }
         }
 
         @Override
-        public void onFailure(Call<Translation> call, Throwable t) {
-            // TODO: выводить Toast в случае ошибки
-            Log.d("mytag", "error " + t.getLocalizedMessage());
+        public void onFailure(Call<LanguagesResponse> call, Throwable t) {
+            // TODO: выводить Toast и сообщение в журнал в случае ошибки
+
 
         }
     }
